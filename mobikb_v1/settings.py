@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ["*"]
 # ALLOWED_HOSTS = ['192.168.X.X', 'localhost', '127.0.0.1']
 
 
-# CSRF_TRUSTED_ORIGINS = 'https://believable-nurturing-production.up.railway.app/'
+CSRF_TRUSTED_ORIGINS = 'https://mobikbdeploy-production.up.railway.app'
 
 # Application definition
 
