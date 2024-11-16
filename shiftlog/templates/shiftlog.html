@@ -1,141 +1,241 @@
 {% extends 'base.html' %} {% block content %}
 <h1>ShiftLog</h1>
+<h6>Still under development</h6>
 <br />
-<div class="container text-center">
+<div class="container text-center" style="max-width: 90%">
+  <!-- Pending Tickets Table -->
   <h3>Pending Tickets</h3>
-  <table class="table table-bordered">
+  <table class="table table-bordered" id="pending-tickets-table">
     <thead>
       <tr class="table-warning">
-        <!-- select -->
-
-        <th>Orginal TKT</th>
+        <th>Original TKT</th>
         <th>Operator TKT</th>
         <th>Reason</th>
-        <!-- select -->
         <th>Status</th>
         <th>Notes</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="table-info">
-        <td>
-          <input
-            class="form-control"
-            type="text"
-            placeholder="70xxxx"
-            aria-label="default input example"
-          />
-        </td>
-        <td>
-          <input
-            class="form-control"
-            type="text"
-            placeholder="70xxxx"
-            aria-label="default input example"
-          />
-        </td>
-        <td>
-          <input
-            class="form-control"
-            type="text"
-            placeholder="e.g. esim transfer"
-            aria-label="default input example"
-          />
-        </td>
-        <td>
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Select Reason</option>
-            <option value="1">Wating for cx response</option>
-            <option value="2">Waiting for op response</option>
-          </select>
-        </td>
-        <td>
-          <input
-            class="form-control"
-            type="text"
-            placeholder="Notes..."
-            aria-label="default input example"
-          />
-        </td>
-        <td>
-          <button class="btn btn-success m-1">Save</button>
-          <button class="btn btn-warning m-1">Edit</button>
-          <button class="btn btn-danger m-1">Delete</button>
-        </td>
-      </tr>
+      <!-- Dynamic Rows will be appended here -->
     </tbody>
   </table>
-  <div class="row">
-    <div class="col-9">
-      <h3>Current Outages</h3>
-      <table class="table table-bordered">
-        <thead>
-          <tr class="table-warning">
-            <!-- select -->
 
-            <th>Operator</th>
-            <th>Countries</th>
-            <th>Starting Date</th>
-            <!-- select -->
-            <th>Notes</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="table-info">
-            <td>
-              <input
-                class="form-control"
-                type="text"
-                placeholder="e.g. 3hk"
-                aria-label="default input example"
-              />
-            </td>
-            <td>
-              <input
-                class="form-control"
-                type="text"
-                placeholder="Egypt"
-                aria-label="default input example"
-              />
-            </td>
-            <td>
-              <input
-                class="form-control"
-                type="text"
-                placeholder="e.g. esim transfer"
-                aria-label="default input example"
-              />
-            </td>
-            <td>
-              <select class="form-select" aria-label="Default select example">
-                <option selected>Select Reason</option>
-                <option value="1">Wating for cx response</option>
-                <option value="2">Waiting for op response</option>
-              </select>
-            </td>
-            <td>
-              <input
-                class="form-control"
-                type="text"
-                placeholder="Notes..."
-                aria-label="default input example"
-              />
-            </td>
-            <td>
-              <button class="btn btn-success m-1">Save</button>
-              <button class="btn btn-warning m-1">Edit</button>
-              <button class="btn btn-danger m-1">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- Form for Adding New Ticket -->
+  <form id="add-ticket-form">
+    <div class="row">
+      <div class="col-md-2">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Original Ticket"
+          id="original-ticket"
+        />
+      </div>
+      <div class="col-md-2">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Operator Ticket"
+          id="operator-ticket"
+        />
+      </div>
+      <div class="col-md-2">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Reason"
+          id="reason"
+        />
+      </div>
+      <div class="col-md-2">
+        <select class="form-select" id="status">
+          <option selected>Select Status</option>
+          <option value="1">Waiting for CX Response</option>
+          <option value="2">Waiting for Operator Response</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Notes"
+          id="notes"
+        />
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-success m-1" type="button" id="save-ticket">
+          Save
+        </button>
+      </div>
     </div>
-    <div class="col">
-      <h3>Hard Cases</h3>
+  </form>
+
+  <br />
+
+  <!-- Current Outages Table -->
+  <h3>Current Outages</h3>
+  <table class="table table-bordered" id="outages-table">
+    <thead>
+      <tr class="table-warning">
+        <th>Operator</th>
+        <th>Countries</th>
+        <th>Starting Date</th>
+        <th>Status</th>
+        <th>Notes</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Dynamic Rows will be appended here -->
+    </tbody>
+  </table>
+
+  <!-- Form for Adding New Outage -->
+  <form id="add-outage-form">
+    <div class="row">
+      <div class="col-md-2">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Operator"
+          id="outage-operator"
+        />
+      </div>
+      <div class="col-md-2">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Countries"
+          id="outage-countries"
+        />
+      </div>
+      <div class="col-md-2">
+        <input class="form-control" type="date" id="outage-start-date" />
+      </div>
+      <div class="col-md-2">
+        <select class="form-select" id="outage-status">
+          <option selected>Select Status</option>
+          <option value="1">Ongoing</option>
+          <option value="2">Resolved</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Notes"
+          id="outage-notes"
+        />
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-success m-1" type="button" id="save-outage">
+          Save
+        </button>
+      </div>
     </div>
-  </div>
+  </form>
 </div>
+
+<script>
+  // Handle Saving New Ticket
+  document.getElementById("save-ticket").addEventListener("click", function () {
+    const originalTicket = document.getElementById("original-ticket").value;
+    const operatorTicket = document.getElementById("operator-ticket").value;
+    const reason = document.getElementById("reason").value;
+    const status = document.getElementById("status").value;
+    const notes = document.getElementById("notes").value;
+
+    if (originalTicket && operatorTicket && reason && status && notes) {
+      const newRow = document.createElement("tr");
+      newRow.classList.add("table-info");
+      newRow.innerHTML = `
+        <td>${originalTicket}</td>
+        <td>${operatorTicket}</td>
+        <td>${reason}</td>
+        <td>${
+          status == 1
+            ? "Waiting for CX Response"
+            : "Waiting for Operator Response"
+        }</td>
+        <td>${notes}</td>
+        <td>
+          <button class="btn btn-warning m-1 edit-btn">Edit</button>
+          <button class="btn btn-danger m-1 delete-btn">Delete</button>
+        </td>
+      `;
+      document
+        .getElementById("pending-tickets-table")
+        .getElementsByTagName("tbody")[0]
+        .appendChild(newRow);
+
+      // Clear form inputs after adding
+      document.getElementById("add-ticket-form").reset();
+    } else {
+      alert("Please fill in all fields");
+    }
+  });
+
+  // Handle Saving New Outage
+  document.getElementById("save-outage").addEventListener("click", function () {
+    const operator = document.getElementById("outage-operator").value;
+    const countries = document.getElementById("outage-countries").value;
+    const startDate = document.getElementById("outage-start-date").value;
+    const status = document.getElementById("outage-status").value;
+    const notes = document.getElementById("outage-notes").value;
+
+    if (operator && countries && startDate && status && notes) {
+      const newRow = document.createElement("tr");
+      newRow.classList.add("table-info");
+      newRow.innerHTML = `
+        <td>${operator}</td>
+        <td>${countries}</td>
+        <td>${startDate}</td>
+        <td>${status == 1 ? "Ongoing" : "Resolved"}</td>
+        <td>${notes}</td>
+        <td>
+          <button class="btn btn-warning m-1 edit-btn">Edit</button>
+          <button class="btn btn-danger m-1 delete-btn">Delete</button>
+        </td>
+      `;
+      document
+        .getElementById("outages-table")
+        .getElementsByTagName("tbody")[0]
+        .appendChild(newRow);
+
+      // Clear form inputs after adding
+      document.getElementById("add-outage-form").reset();
+    } else {
+      alert("Please fill in all fields");
+    }
+  });
+
+  // Edit Button Event Listener
+  document.addEventListener("click", function (event) {
+    if (event.target && event.target.classList.contains("edit-btn")) {
+      const row = event.target.closest("tr");
+      const originalTicket = row.cells[0].innerText;
+      const operatorTicket = row.cells[1].innerText;
+      const reason = row.cells[2].innerText;
+      const status =
+        row.cells[3].innerText == "Waiting for CX Response" ? 1 : 2;
+      const notes = row.cells[4].innerText;
+
+      // Fill in the form with current row data for editing
+      document.getElementById("original-ticket").value = originalTicket;
+      document.getElementById("operator-ticket").value = operatorTicket;
+      document.getElementById("reason").value = reason;
+      document.getElementById("status").value = status;
+      document.getElementById("notes").value = notes;
+
+      // Remove the row after editing
+      row.remove();
+    }
+
+    if (event.target && event.target.classList.contains("delete-btn")) {
+      const row = event.target.closest("tr");
+      row.remove();
+    }
+  });
+</script>
 {% endblock content %}
