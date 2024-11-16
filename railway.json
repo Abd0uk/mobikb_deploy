@@ -4,6 +4,6 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "python manage.py migrate && gunicorn mobikb_v1.wsgi"
+    "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn mobikb_v1.wsgi"
   }
 }
