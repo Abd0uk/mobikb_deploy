@@ -1,0 +1,102 @@
+{% extends 'base.html' %} {% block content %}
+
+<header class="header">
+  <h1>Knowledge Base</h1>
+  <hr class="hr" />
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar for categories -->
+    <nav class="col-md-3 col-lg-2 sidebar">
+      <h4 class="category-title">Categories</h4>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <a href="#esim" class="article-link">eSIM Articles</a>
+        </li>
+        <li class="list-group-item">
+          <a href="#payments" class="article-link">Payments</a>
+        </li>
+        <li class="list-group-item">
+          <a href="#refunds" class="article-link">Refunds</a>
+        </li>
+        <li class="list-group-item">
+          <a href="#problematic-countries" class="article-link"
+            >Problematic Countries</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main content area for articles -->
+    <main class="col-md-9 col-lg-10 content">
+      <section id="esim">
+        <h2>eSIM Articles</h2>
+        <p>
+          Details about eSIM technology, configuration, troubleshooting, and
+          updates.
+        </p>
+        <!-- Placeholder for eSIM articles -->
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Getting Started with eSIM</h5>
+            <p class="card-text">
+              Learn the basics of eSIM setup, activation, and usage.
+            </p>
+            <a href="#" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="payments">
+        <h2>Payments</h2>
+        <p>
+          Information on payment methods, transaction security, and issues
+          resolution.
+        </p>
+        <!-- Placeholder for Payment articles -->
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Secure Payment Methods</h5>
+            <p class="card-text">
+              Understand the available payment methods and security measures.
+            </p>
+            <a href="#" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="refunds">
+        <h2>Refunds</h2>
+        <p>Guidance on refund policies, eligibility, and the refund process.</p>
+        <!-- Placeholder for Refund articles -->
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">How to Request a Refund</h5>
+            <p class="card-text">
+              Steps to follow when requesting a refund and common issues.
+            </p>
+            <a href="#" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="problematic-countries">
+        <h2>Problematic Countries</h2>
+        <p>Details about issues faced with services in certain countries.</p>
+        <!-- Placeholder for Problematic Countries articles -->
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Challenges in Service Availability</h5>
+            <p class="card-text">
+              An overview of limitations and restrictions in certain countries.
+            </p>
+            <a href="#" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+{% endblock content %}

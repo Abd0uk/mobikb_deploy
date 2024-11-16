@@ -1,0 +1,121 @@
+<nav
+  class="navbar navbar-expand-lg bg-dark border-bottom border-body"
+  data-bs-theme="dark"
+>
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'core:home' %}">MobiBase</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    {% if user.is_authenticated %}
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="{% url 'core:home' %}"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'shiftlog:home' %}">ShiftLog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'providers:operators' %}"
+            >Operators</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'core:kbase' %}">Base</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'assistant:topics' %}">Assistant</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Important Links
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                target="_blank"
+                href="https://www.nperf.com/en/map/"
+                >Network Coverage</a
+              >
+            </li>
+            <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a
+                class="dropdown-item"
+                target="_blank"
+                href="https://mobimatter.com/check-usage"
+                >MM-Check Usage</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                target="_blank"
+                href="https://status.esim-go.com/"
+                >eSIMGo Status Page</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Operator, Article, etc"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+
+    <p>--</p>
+    <div>
+      <a href="{% url 'core:profile' %}"
+        ><button class="btn btn-success">Profile</button></a
+      >
+    </div>
+    <p>--</p>
+    <div>
+      <form method="post" action="{% url 'core:logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-dark">Logout</button>
+      </form>
+    </div>
+    {% else %}
+    <div>
+      <button class="btn btn-dark">
+        <a
+          class="nav-link active"
+          aria-current="page"
+          href="{% url 'core:login' %}"
+          >Login</a
+        >
+      </button>
+    </div>
+    {% endif %}
+  </div>
+</nav>

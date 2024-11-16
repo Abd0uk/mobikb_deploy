@@ -1,0 +1,119 @@
+{% extends 'base.html' %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Knowledge Base Wizard</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .wizard-step {
+        display: none;
+      }
+
+      .wizard-step.active {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <h2 class="mb-4">Knowledge Base Wizard</h2>
+      <form id="wizardForm">
+        <!-- Step 1: Select Topic -->
+        <div id="step1" class="wizard-step active">
+          <div class="mb-3">
+            <label for="topicSelect" class="form-label">Select a Topic:</label>
+            <select id="topicSelect" class="form-select">
+              <option value="" selected>Select Topic</option>
+              <option value="payments">Payments</option>
+              <!-- Add more options as needed -->
+            </select>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="nextStep(2)">
+            Next
+          </button>
+        </div>
+
+        <!-- Step 2: Payment Status -->
+        <div id="step2" class="wizard-step">
+          <div class="mb-3">
+            <label for="statusSelect" class="form-label"
+              >What is the status of the payment?</label
+            >
+            <select id="statusSelect" class="form-select">
+              <option value="" selected>Select Status</option>
+              <option value="pending">Pending Authentication</option>
+              <option value="auth-failure">Authorization Failure</option>
+            </select>
+          </div>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="previousStep(1)"
+          >
+            Back
+          </button>
+          <button type="button" class="btn btn-primary" onclick="showMacro()">
+            Submit
+          </button>
+        </div>
+
+        <!-- Step 3: Display Macro -->
+        <div id="step3" class="wizard-step">
+          <div id="macroMessage" class="alert alert-info"></div>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="previousStep(2)"
+          >
+            Back
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Bootstrap JS & Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+      function nextStep(step) {
+        document.querySelectorAll(".wizard-step").forEach((stepDiv) => {
+          stepDiv.classList.remove("active");
+        });
+        document.getElementById(`step${step}`).classList.add("active");
+      }
+
+      function previousStep(step) {
+        nextStep(step);
+      }
+
+      function showMacro() {
+        const status = document.getElementById("statusSelect").value;
+        const macroMessage = document.getElementById("macroMessage");
+
+        if (status === "pending") {
+          macroMessage.textContent =
+            "Please send the macro labeled: 'OTP Issues'.";
+        } else if (status === "auth-failure") {
+          macroMessage.textContent =
+            "Please send the macro labeled: 'Cannot Pay'.";
+        } else {
+          macroMessage.textContent = "Please select a valid status.";
+        }
+
+        nextStep(3);
+      }
+    </script>
+  </body>
+</html>
+
+{% endblock content %}

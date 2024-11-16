@@ -1,0 +1,141 @@
+{% extends 'base.html' %} {% block content %}
+<h1>ShiftLog</h1>
+<br />
+<div class="container text-center">
+  <h3>Pending Tickets</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr class="table-warning">
+        <!-- select -->
+
+        <th>Orginal TKT</th>
+        <th>Operator TKT</th>
+        <th>Reason</th>
+        <!-- select -->
+        <th>Status</th>
+        <th>Notes</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-info">
+        <td>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="70xxxx"
+            aria-label="default input example"
+          />
+        </td>
+        <td>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="70xxxx"
+            aria-label="default input example"
+          />
+        </td>
+        <td>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="e.g. esim transfer"
+            aria-label="default input example"
+          />
+        </td>
+        <td>
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Select Reason</option>
+            <option value="1">Wating for cx response</option>
+            <option value="2">Waiting for op response</option>
+          </select>
+        </td>
+        <td>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Notes..."
+            aria-label="default input example"
+          />
+        </td>
+        <td>
+          <button class="btn btn-success m-1">Save</button>
+          <button class="btn btn-warning m-1">Edit</button>
+          <button class="btn btn-danger m-1">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-9">
+      <h3>Current Outages</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr class="table-warning">
+            <!-- select -->
+
+            <th>Operator</th>
+            <th>Countries</th>
+            <th>Starting Date</th>
+            <!-- select -->
+            <th>Notes</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-info">
+            <td>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="e.g. 3hk"
+                aria-label="default input example"
+              />
+            </td>
+            <td>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Egypt"
+                aria-label="default input example"
+              />
+            </td>
+            <td>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="e.g. esim transfer"
+                aria-label="default input example"
+              />
+            </td>
+            <td>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Select Reason</option>
+                <option value="1">Wating for cx response</option>
+                <option value="2">Waiting for op response</option>
+              </select>
+            </td>
+            <td>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Notes..."
+                aria-label="default input example"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success m-1">Save</button>
+              <button class="btn btn-warning m-1">Edit</button>
+              <button class="btn btn-danger m-1">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <h3>Hard Cases</h3>
+    </div>
+  </div>
+</div>
+{% endblock content %}

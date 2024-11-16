@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block content %}
+<br />
+<h1>Operators</h1>
+<br />
+<div class="hstack gap-3">
+  {% for operator in Operators %}
+
+  <div class="p-2">
+    <button type="button" class="btn btn-secondary btn-lg">
+      <a
+        class="text-decoration-none link-light"
+        href="{% url 'providers:operator_detail' operator.id %}"
+        >{{ operator.operator_name }}</a
+      >
+    </button>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}
